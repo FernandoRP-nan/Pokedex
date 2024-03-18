@@ -11,6 +11,8 @@ import kotlinx.coroutines.launch
 import mx.com.satoritech.journeys.presentation.viewmodel.BaseViewModel
 import mx.nancrow.pokedex.R
 import mx.nancrow.pokedex.domain.model.network.response.PokemonResponse
+import mx.nancrow.pokedex.domain.model.network.response.PokemonSpeciesResponse
+import mx.nancrow.pokedex.domain.use_case.PokemonSpeciesUseCase
 import mx.nancrow.pokedex.domain.use_case.PokemonUseCase
 import mx.nancrow.pokedex.util.Resource
 import javax.inject.Inject
@@ -19,6 +21,7 @@ import javax.inject.Inject
 class Act1ViewModel @Inject constructor(
     application: Application,
     private val pokemonUseCase: PokemonUseCase,
+    private val pokemonSpeciesUseCase: PokemonSpeciesUseCase,
 ) : BaseViewModel(application) {
 
     var state by mutableStateOf(Act1ViewState())
@@ -46,6 +49,8 @@ class Act1ViewModel @Inject constructor(
         viewModelScope.launch {
             val randomPokemonId = (1..898).random()
             try {
+                var pokemon by mutableStateOf(PokemonDataClass())
+
                 when (val response = pokemonUseCase.invoke(randomPokemonId)) {
                     is Resource.Error -> {
                         //uiState = uiState.copy(isLoading = false)
@@ -53,11 +58,49 @@ class Act1ViewModel @Inject constructor(
                     }
 
                     is Resource.Success -> {
-                        state = state.copy(
+                        response.data.also {
+                            pokemon.id = it!!.id
+                            pokemon.name = it.name
+                            pokemon.sprites = it.sprites
+                        }
+                        /*state = state.copy(
                             pokemon = response.data
-                        )
+                        )*/
                     }
                 }
+                when (val response = pokemonSpeciesUseCase.invoke(randomPokemonId)) {
+                    is Resource.Error -> {
+                        //uiState = uiState.copy(isLoading = false)
+                        _uiEvent.send(PokemonUiEvent.ShowSnackBar(response.message ?: ""))
+                    }
+
+                    is Resource.Success -> {
+                        val pokemonDescription: String = response.data?.let {
+                            extractEnglishDescription(
+                                it
+                            )
+                        }!!
+                        pokemon = pokemon.copy(
+                            description = pokemonDescription
+                        )
+                        println("descripción " + pokemonDescription)
+
+                    }
+                }
+                val pokemonResponse: PokemonResponse? = pokemon.let {
+                    PokemonResponse(
+                        id = it.id,
+                        name = it.name,
+                        sprites = it.sprites,
+                        height = it.height,
+                        weight = it.weight,
+                        description = it.description
+                    )
+                }
+                state = state.copy(
+                    pokemon = pokemonResponse
+                )
+
                 /*
                 // Obtener la descripción del Pokémon
                 val pokemonSpecies = withContext(Dispatchers.IO) {
@@ -72,6 +115,13 @@ class Act1ViewModel @Inject constructor(
                 println("error: $e")
             }
         }
+    }
+
+    private fun extractEnglishDescription(pokemonSpecies: PokemonSpeciesResponse): String {
+        val englishFlavorTextEntry = pokemonSpecies.flavorTextEntries.find { entry ->
+            entry.language.name == "es" // "en" representa el idioma inglés
+        }
+        return englishFlavorTextEntry?.flavorText ?: "Descripción no disponible"
     }
 
     private fun loginUser() {

@@ -48,14 +48,14 @@ val Typography = Typography(
         fontFamily = fontNormal,
         fontWeight = FontWeight(300),
         fontSize = 15.sp,
-        lineHeight = 12.sp,
+        lineHeight = 15.sp,
         letterSpacing = 0.5.sp
     ),
     labelMedium = TextStyle(
         fontFamily = fontNormal,
         fontWeight = FontWeight(700),
         fontSize = 13.sp,
-        lineHeight = 11.sp,
+        lineHeight = 13.sp,
         letterSpacing = 0.5.sp
     ),
     labelSmall = TextStyle(

@@ -5,8 +5,10 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
+import mx.nancrow.pokedex.data.use_case.PokemonSpeciesUseCaseImpl
 import mx.nancrow.pokedex.data.use_case.PokemonUseCaseImpl
 import mx.nancrow.pokedex.domain.repository.PokemonRepository
+import mx.nancrow.pokedex.domain.use_case.PokemonSpeciesUseCase
 import mx.nancrow.pokedex.domain.use_case.PokemonUseCase
 
 @Module
@@ -14,7 +16,7 @@ import mx.nancrow.pokedex.domain.use_case.PokemonUseCase
 object UseCaseModule {
     @Provides
     @ViewModelScoped
-    fun provideDeleteCardUseCase(
+    fun providePokemonUseCase(
         pokemonRepository: PokemonRepository
     ): PokemonUseCase {
         return PokemonUseCaseImpl(
@@ -22,4 +24,13 @@ object UseCaseModule {
         )
     }
 
+    @Provides
+    @ViewModelScoped
+    fun providePokemonSpeciesUseCase(
+        pokemonRepository: PokemonRepository
+    ): PokemonSpeciesUseCase {
+        return PokemonSpeciesUseCaseImpl(
+            pokemonRepository
+        )
+    }
 }

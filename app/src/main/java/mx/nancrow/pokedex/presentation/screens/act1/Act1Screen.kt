@@ -1,6 +1,5 @@
 package mx.nancrow.pokedex.presentation.screens.act1
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -15,7 +14,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,9 +27,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.capitalize
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -43,16 +45,13 @@ import mx.pokedex.presentation.composables.images.ImageNormal
 
 @Composable
 fun Act1Screen(
-    navController: NavController,
-    viewModel: Act1ViewModel = hiltViewModel()
+    navController: NavController, viewModel: Act1ViewModel = hiltViewModel()
 ) {
     val spacing = LocalSpacing.current
     var isPasswordVisible by rememberSaveable { mutableStateOf("") }
 
     Screen(
-        navController = navController,
-        buttonBack = false,
-        currentRoute = Screens.ACT_1
+        navController = navController, buttonBack = false, currentRoute = Screens.ACT_1
     ) {
         Column(
             modifier = Modifier
@@ -67,19 +66,18 @@ fun Act1Screen(
             TextFieldSearch(
                 value = isPasswordVisible,
                 onValueTextChange = { isPasswordVisible = it.lowercase() },
-                modifier = Modifier
-                    .height(40.dp),
+                modifier = Modifier.height(40.dp),
                 hint = stringResource(id = R.string.search_pokemon)
             )
-            viewModel.state.pokemon?.let {
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(spacing.spaceSmall),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    ImageNormal(
-                        modifier = Modifier.size(30.dp),
-                        imageName = R.drawable.poke_ball_icon
-                    )
+            Row(
+                modifier = Modifier.weight(1f),
+                horizontalArrangement = Arrangement.spacedBy(spacing.spaceSmall),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                ImageNormal(
+                    modifier = Modifier.size(30.dp), imageName = R.drawable.poke_ball_icon
+                )
+                viewModel.state.pokemon?.let {
                     Text(
                         text = "${it.id} ${it.name.capitalize()}",
                         color = MaterialTheme.colorScheme.onPrimary,
@@ -87,46 +85,79 @@ fun Act1Screen(
                         modifier = Modifier.offset(y = (5).dp),
                     )
                 }
-                Row(modifier = Modifier.fillMaxWidth()) {
-                    Box(modifier = Modifier.weight(1f))
-                    Box(modifier = Modifier.weight(1f)){
+            }
+            Row(modifier = Modifier
+                .fillMaxWidth()
+                .weight(4f)) {
+                Box(
+                    modifier = Modifier
+                        .border(
+                            width = 10.dp,
+                            color = MaterialTheme.colorScheme.primaryContainer,
+                            shape = RoundedCornerShape(10.dp)
+                        )
+                        .clip(RoundedCornerShape(10.dp))
+                        .clip(RectangleShape)
+                        .weight(1f)
+                        .background(MaterialTheme.colorScheme.background)
 
+                ) {
+                    viewModel.state.pokemon?.let {
+                        AsyncImage(
+                            model = it.sprites.frontDefault,
+                            contentDescription = null,
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(spacing.spaceMedium),
+                            contentScale = ContentScale.Crop
+                        )
                     }
                 }
-            }
-        }
-        Column(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth()
-                .fillMaxHeight(.4f)
-                .clip(RoundedCornerShape(10.dp, 10.dp, 0.dp, 0.dp))
-                .background(MaterialTheme.colorScheme.background),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Box(modifier = Modifier.weight(8f), contentAlignment = Alignment.Center) {
-                viewModel.state.pokemon?.let {
-                    AsyncImage(
-                        model = it.sprites.frontDefault,
-                        contentDescription = null,
-                        modifier = Modifier
-                            .size(200.dp)
-                            .padding(spacing.spaceMedium)
-                            .border(
-                                width = 1.dp,
-                                color = MaterialTheme.colorScheme.primaryContainer
-                            ),
-                        contentScale = ContentScale.Crop
-                    )
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxHeight(.4f)
+                ) {
+
                 }
             }
-            BasicButton(
+            Column(
                 modifier = Modifier
-                    .weight(2f)
-                    .padding(bottom = spacing.spaceMedium),
-                label = R.string.obtener
+                    .padding(horizontal = spacing.spaceSmall)
+                    .fillMaxWidth()
+                    .weight(4f)
+                    .clip(RoundedCornerShape(10.dp))
+                    .background(MaterialTheme.colorScheme.background)
+                    .border(
+                        width = 10.dp,
+                        color = MaterialTheme.colorScheme.onSurface,
+                    ), horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                viewModel.onEvent(Act1ViewEvent.GetRandomPokemon)
+                Box(
+                    modifier = Modifier
+                        .weight(7f)
+                        .padding(horizontal = spacing.spaceMedium)
+                        .verticalScroll(rememberScrollState()),
+                    contentAlignment = Alignment.Center
+                ) {
+                    viewModel.state.pokemon?.let {
+                        Text(
+                            text = "${"Descripción:"} \n\n${it.description.capitalize()}",
+                            color = MaterialTheme.colorScheme.onBackground,
+                            style = MaterialTheme.typography.labelLarge,
+                            modifier = Modifier.offset(y = (5).dp),
+                            textAlign = TextAlign.Justify
+                        )
+                    }
+                }
+                BasicButton(
+                    modifier = Modifier
+                        .weight(3f)
+                        .padding(bottom = spacing.spaceLarge),
+                    label = R.string.obtener
+                ) {
+                    viewModel.onEvent(Act1ViewEvent.GetRandomPokemon)
+                }
             }
         }
     }

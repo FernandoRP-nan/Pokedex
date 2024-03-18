@@ -4,6 +4,7 @@ import android.util.Log
 import mx.nancrow.pokedex.domain.preferences.Preferences
 import mx.nancrow.pokedex.data.remote.PokemonApiService
 import mx.nancrow.pokedex.domain.model.network.response.PokemonResponse
+import mx.nancrow.pokedex.domain.model.network.response.PokemonSpeciesResponse
 import mx.nancrow.pokedex.domain.repository.PokemonRepository
 import mx.nancrow.pokedex.util.Resource
 
@@ -14,6 +15,16 @@ class PokemonRepositoryImpl(
     override suspend fun getPokemon(pokemonId: Int): Resource<PokemonResponse> {
         return try {
             val response = api.getPokemon(pokemonId)
+            println(pokemonId)
+            Resource.Success(response)
+        } catch (e: Exception) {
+            Log.e("apiError", e.message ?: "Error")
+            Resource.Error(e.message ?: "Error")
+        }
+    }
+    override suspend fun getPokemonSpecies(pokemonId: Int): Resource<PokemonSpeciesResponse> {
+        return try {
+            val response = api.getPokemonSpecies(pokemonId)
             println(pokemonId)
             Resource.Success(response)
         } catch (e: Exception) {
