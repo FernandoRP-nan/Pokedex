@@ -13,7 +13,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
-import mx.nancrow.pokedex.presentation.theme.quickSandBold
 
 @Composable
 fun TextButton(
@@ -22,7 +21,6 @@ fun TextButton(
     color: Color = Color(0xFFBF3C3C),
     underline: Boolean = true,
     style: TextStyle = MaterialTheme.typography.labelLarge,
-    fontWeight: FontWeight? = null,
     textAlign: TextAlign? = null,
     onClick: () -> Unit
 ) {
@@ -32,16 +30,16 @@ fun TextButton(
             .clickable(onClick = onClick)
     ) {
         Text(
+            modifier = Modifier,
             text = label,
             color = color,
             style = style,
-            fontFamily = quickSandBold,
             textDecoration = if (underline) {
                 TextDecoration.Underline
             } else {
                 null
             },
-            fontWeight = fontWeight,
+            fontWeight = FontWeight(800),
             textAlign = textAlign
         )
     }

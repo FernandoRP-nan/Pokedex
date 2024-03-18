@@ -13,6 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
@@ -63,13 +64,11 @@ fun BasicButton(
                 containerColor
             },
             style = style,
-            fontFamily = FontFamily(
-                if (bold) {
-                    Font(R.font.quicksand_bold)
-                } else {
-                    Font(R.font.quicksand_regular)
-                }
-            ),
+            fontWeight = if (bold) {
+                FontWeight(800)
+            } else {
+                FontWeight(400)
+            },
             textAlign = TextAlign.Center,
             fontSize = fontSize
         )

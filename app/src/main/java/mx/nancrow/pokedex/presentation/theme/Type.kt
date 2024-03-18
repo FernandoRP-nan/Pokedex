@@ -8,25 +8,22 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import mx.nancrow.pokedex.R
 
-val quickSand = FontFamily(
+val fontNormal = FontFamily(
     Font(
-        R.font.quicksand_regular)
+        R.font.pokemon_gb_raeo)
 )
 
-val quickSandBold = FontFamily(
-    Font(R.font.quicksand_bold)
-)
 // Set of Material typography styles to start with
 val Typography = Typography(
     titleLarge = TextStyle(
-        fontFamily = quickSand,
+        fontFamily = fontNormal,
         fontWeight = FontWeight.Normal,
         fontSize = 55.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp
     ),
     bodyLarge = TextStyle(
-        fontFamily = quickSand,
+        fontFamily = fontNormal,
         fontWeight = FontWeight.Normal,
         fontSize = 30.sp,
         lineHeight = 24.sp,
@@ -34,38 +31,38 @@ val Typography = Typography(
     ) ,
 
     bodyMedium = TextStyle(
-        fontFamily = quickSand,
+        fontFamily = fontNormal,
         fontWeight = FontWeight.Normal,
         fontSize = 20.sp,
-        lineHeight = 24.sp,
+        lineHeight = 18.sp,
         letterSpacing = 0.5.sp
     ),
     bodySmall = TextStyle(
-        fontFamily = quickSand,
+        fontFamily = fontNormal,
         fontWeight = FontWeight.Normal,
         fontSize = 19.sp,
-        lineHeight = 24.sp,
+        lineHeight = 16.sp,
         letterSpacing = 0.5.sp
     ),
     labelLarge = TextStyle(
-        fontFamily = quickSand,
+        fontFamily = fontNormal,
         fontWeight = FontWeight(300),
         fontSize = 15.sp,
-        lineHeight = 16.sp,
+        lineHeight = 12.sp,
         letterSpacing = 0.5.sp
     ),
     labelMedium = TextStyle(
-        fontFamily = quickSand,
+        fontFamily = fontNormal,
         fontWeight = FontWeight(700),
-        fontSize = 14.sp,
-        lineHeight = 16.sp,
+        fontSize = 13.sp,
+        lineHeight = 11.sp,
         letterSpacing = 0.5.sp
     ),
     labelSmall = TextStyle(
-        fontFamily = quickSand,
+        fontFamily = fontNormal,
         fontWeight = FontWeight.Medium,
-        fontSize = 13.sp,
-        lineHeight = 16.sp,
+        fontSize = 10.sp,
+        lineHeight = 8.sp,
         letterSpacing = 0.5.sp
     )
     /* Other default text styles to override

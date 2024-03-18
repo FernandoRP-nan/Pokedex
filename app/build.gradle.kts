@@ -33,7 +33,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            //buildConfigField("String", "BASE_URL", "\"${ProjectConfig.baseUrlDev}\"")
+            buildConfigField("String", "BASE_URL", "\"${ProjectConfig.baseUrlDev}\"")
             signingConfig = signingConfigs.getByName("debug")
         }
         release {

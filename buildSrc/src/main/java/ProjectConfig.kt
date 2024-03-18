@@ -14,7 +14,7 @@ object ProjectConfig {
     }
 
     //BuildConfig create base url
-    const val baseUrlDev = ""
+    const val baseUrlDev = "https://pokeapi.co/api/v2/"
     const val baseUrlProd = ""
 
     //signing config for release

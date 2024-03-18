@@ -1,5 +1,6 @@
-package mx.pokedex.presentation.screens.act1
+package mx.nancrow.pokedex.presentation.screens.act1
 
+import mx.nancrow.pokedex.domain.model.network.response.PokemonResponse
 import mx.pokedex.presentation.viewstate.ViewState
 
 data class Act1ViewState(
@@ -9,5 +10,6 @@ data class Act1ViewState(
     val emailError: Int? = null,
     val result: String = "",
     val showDialogError: Boolean = false,
+    val pokemon: PokemonResponse? = null
 
 ) : ViewState()

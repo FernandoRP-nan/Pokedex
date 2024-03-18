@@ -15,8 +15,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import mx.nancrow.pokedex.R
-import mx.pokedex.presentation.navigation.Screens
-import mx.pokedex.presentation.theme.Primary
+import mx.nancrow.pokedex.presentation.navigation.Screens
+import mx.nancrow.pokedex.presentation.theme.Primary
 
 data class NavigationItem(
     val title: String,
@@ -26,19 +26,19 @@ data class NavigationItem(
 
 private val items = listOf(
     NavigationItem(
-        title = "Actividad actual",
+        title = "Pokemon",
         icon = R.drawable.home,
         route = Screens.ACT_1
     ),
     NavigationItem(
-        title = "Todas",
-        icon = R.drawable.menu,
-        route = Screens.ACT_1
+        title = "Favoritos",
+        icon = R.drawable.favorite,
+        route = Screens.ACT_2
     ),
     NavigationItem(
         title = "Perfil",
         icon = R.drawable.person,
-        route = Screens.ACT_1
+        route = Screens.ACT_3
     )
 )
 
@@ -48,8 +48,8 @@ fun BottomNavigation(
     navController: NavController
 ) {
     NavigationBar(
-        containerColor = Color.White,
-        contentColor = Primary,
+        containerColor = MaterialTheme.colorScheme.primary,
+        contentColor = MaterialTheme.colorScheme.background,
     ) {
         items.forEachIndexed { index, navigationItem ->
             NavigationBarItem(
@@ -60,7 +60,7 @@ fun BottomNavigation(
                         modifier = Modifier.size(24.dp)
                     )
                 },
-                label = { Text(navigationItem.title, fontSize = 6.sp) },
+                //label = { Text(navigationItem.title, fontSize = 6.sp) },
                 selected = currentRoute == navigationItem.route,
                 onClick = {
                     navigationItem.route?.let {
@@ -69,11 +69,11 @@ fun BottomNavigation(
                     }
                 },
                 colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = MaterialTheme.colorScheme.secondary,
-                    selectedTextColor = MaterialTheme.colorScheme.secondary,
-                    unselectedIconColor = MaterialTheme.colorScheme.primary,
+                    selectedIconColor = MaterialTheme.colorScheme.primary,
+                    selectedTextColor = MaterialTheme.colorScheme.background,
+                    unselectedIconColor = MaterialTheme.colorScheme.background,
                     unselectedTextColor = MaterialTheme.colorScheme.primary,
-                    indicatorColor = MaterialTheme.colorScheme.secondary
+                    indicatorColor = MaterialTheme.colorScheme.background,
                 )
             )
         }

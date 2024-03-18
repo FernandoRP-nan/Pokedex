@@ -1,7 +1,8 @@
-package mx.pokedex.presentation.theme
+package mx.nancrow.pokedex.presentation.theme
 
 import android.app.Activity
 import android.os.Build
+import android.text.method.BaseKeyListener
 import android.view.Window
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -18,29 +19,37 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import mx.nancrow.pokedex.presentation.theme.Typography
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = Primary,
+    onPrimary = OnPrimary,
+    primaryContainer = PrimaryVariant,
+    onPrimaryContainer = Secondary,
+    secondary = Secondary,
+    onSecondary = OnSecondary,
+    secondaryContainer = SecondaryVariant,
+    background = OnBackground,
+    onBackground = Background,
+    surface = Surface,
+    onSurface = OnSurface,
+    error = Color.Red,
+    onError = Secondary
 )
 
 private val LightColorScheme = lightColorScheme(
     primary = Primary,
-    onPrimary = Secondary,
-    primaryContainer = Surface,
+    onPrimary = OnPrimary,
+    primaryContainer = PrimaryVariant,
     onPrimaryContainer = Secondary,
     secondary = Secondary,
-    onSecondary = Secondary,
+    onSecondary = OnSecondary,
+    secondaryContainer = SecondaryVariant,
     background = Background,
     onBackground = OnBackground,
     surface = Surface,
     onSurface = OnSurface,
     error = Color.Red,
     onError = Secondary
-
-
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
     surface = Color(0xFFFFFBFE),

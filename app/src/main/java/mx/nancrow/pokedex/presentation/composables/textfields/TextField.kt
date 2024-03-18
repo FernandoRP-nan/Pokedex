@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.Dp
@@ -28,8 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import mx.nancrow.pokedex.R
 import mx.pokedex.presentation.theme.LocalSpacing
-import mx.nancrow.pokedex.presentation.theme.quickSand
-import mx.nancrow.pokedex.presentation.theme.quickSandBold
+import mx.nancrow.pokedex.presentation.theme.fontNormal
 
 
 @Composable
@@ -40,7 +40,7 @@ fun GenericTextField(
     isError: Boolean = false,
     isRecoverAccount: Boolean = false,
     @StringRes label: Int? = null,
-    @StringRes hint : Int = R.string.nothing,
+    @StringRes hint: Int = R.string.nothing,
     singleLine: Boolean = true,
     borderColor: Color = MaterialTheme.colorScheme.primary,
     isTextArea: Boolean = false,
@@ -52,7 +52,7 @@ fun GenericTextField(
     @StringRes supportingText: Int? = null,
     @StringRes errorMessage: Int? = null,
     visualTransformation: VisualTransformation = VisualTransformation.None,
-    ) {
+) {
     val spacing = LocalSpacing.current
     Column(
         modifier = modifier
@@ -62,8 +62,8 @@ fun GenericTextField(
                 text = stringResource(id = label),
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.primary,
-                fontFamily = quickSandBold,
-                )
+                fontWeight = FontWeight(800)
+            )
             Spacer(modifier = Modifier.height(spacing.spaceSmall))
         }
         OutlinedTextField(
@@ -72,8 +72,7 @@ fun GenericTextField(
             modifier = modifier
 
                 .height(if (isTextArea) 120.dp else 52.dp)
-                .bottomBorder(1.dp, MaterialTheme.colorScheme.primary)
-            ,
+                .bottomBorder(1.dp, MaterialTheme.colorScheme.primary),
             colors = OutlinedTextFieldDefaults.colors(
                 focusedTextColor = MaterialTheme.colorScheme.primary,
                 unfocusedTextColor = MaterialTheme.colorScheme.primary,
@@ -84,23 +83,14 @@ fun GenericTextField(
             ),
             shape = RoundedCornerShape(0.dp),
             trailingIcon = trailingIcon,
-            /*supportingText = {
-                supportingText?.let {
-                    Text(
-                        text = stringResource(id = supportingText),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.error
-                    )
-                }
-            },*/
             keyboardOptions = keyboardOptions,
             keyboardActions = keyboardActions,
             isError = isError,
             singleLine = singleLine,
             textStyle = if (isRecoverAccount)
-                TextStyle.Default.copy(fontSize = 10.sp, fontFamily = quickSand)
+                TextStyle.Default.copy(fontSize = 10.sp, fontFamily = fontNormal)
             else
-                TextStyle.Default.copy(fontFamily = quickSand),
+                TextStyle.Default.copy(fontFamily = fontNormal),
             visualTransformation = visualTransformation,
             placeholder = {
                 Text(
@@ -112,7 +102,7 @@ fun GenericTextField(
                 )
             },
         )
-        if(isError && errorMessage!=null){
+        if (isError && errorMessage != null) {
             Text(
                 text = stringResource(id = errorMessage),
                 style = MaterialTheme.typography.labelSmall,
@@ -130,12 +120,12 @@ fun Modifier.bottomBorder(strokeWidth: Dp, color: Color) = composed(
 
         Modifier.drawBehind {
             val width = size.width
-            val height = size.height - strokeWidthPx/2
+            val height = size.height - strokeWidthPx / 2
 
             drawLine(
                 color = color,
                 start = Offset(x = 0f, y = height),
-                end = Offset(x = width , y = height),
+                end = Offset(x = width, y = height),
                 strokeWidth = strokeWidthPx
             )
         }
