@@ -24,6 +24,7 @@
     <string name="prome_is">"Tu promedio es: "</string>
     <string name="result_prom_is">"Tú estás: "</string>
     <string name="obtener">"Obtener pokemon"</string>
+    <string name="search_pokemon">Buscar pokemon</string>
 
 
 </resources>

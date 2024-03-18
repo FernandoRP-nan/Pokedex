@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Sprites(
-    @SerializedName("frontDefault")
+    @SerializedName("front_default")
     val frontDefault: String
 ): Parcelable
 
@@ -16,7 +16,7 @@ data class PokemonResponse(
     val id: Int,
     @SerializedName("name")
     val name: String,
-    @SerializedName("Sprites")
+    @SerializedName("sprites")
     val sprites: Sprites,
     @SerializedName("height")
     val height: Int,
