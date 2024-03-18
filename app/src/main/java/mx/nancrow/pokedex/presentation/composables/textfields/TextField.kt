@@ -1,4 +1,4 @@
-package mx.pokedex.presentation.composables.textfields
+package mx.nancrow.pokedex.presentation.composables.textfields
 
 import android.annotation.SuppressLint
 import androidx.annotation.StringRes
@@ -26,7 +26,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import mx.nancrow.R
+import mx.nancrow.pokedex.R
 import mx.pokedex.presentation.theme.LocalSpacing
 import mx.nancrow.pokedex.presentation.theme.quickSand
 import mx.nancrow.pokedex.presentation.theme.quickSandBold

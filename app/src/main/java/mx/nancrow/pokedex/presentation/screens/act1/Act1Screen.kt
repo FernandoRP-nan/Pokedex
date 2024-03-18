@@ -1,4 +1,4 @@
-package mx.pokedex.presentation.screens.act1
+package mx.nancrow.pokedex.presentation.screens.act1
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -27,13 +27,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import mx.nancrow.R
+import mx.nancrow.pokedex.R
 import mx.nancrow.pokedex.presentation.composables.buttons.BasicButton
-import mx.nancrow.pokedex.presentation.screens.act1.Act1ViewModel
-import mx.pokedex.presentation.composables.dialogs.DismissDialog
-import mx.pokedex.presentation.navigation.Screens
+import mx.nancrow.pokedex.presentation.composables.dialogs.DismissDialog
 import mx.pokedex.presentation.composables.screens.Screen
-import mx.pokedex.presentation.composables.textfields.GenericTextField
+import mx.nancrow.pokedex.presentation.composables.textfields.GenericTextField
+import mx.pokedex.presentation.navigation.Screens
+import mx.pokedex.presentation.screens.act1.Act1ViewEvent
 import mx.pokedex.presentation.theme.LocalSpacing
 
 @Composable
@@ -87,7 +87,8 @@ fun Act1Screen(
                     if (viewModel.state.isLoginSuccess) {
                         println("se ejecuto")
                         viewModel.onEvent(
-                            Act1ViewEvent.UpdateResult(generarTabla(
+                            Act1ViewEvent.UpdateResult(
+                                generarTabla(
                                     viewModel.state.input.toInt()
                                 )
                             )

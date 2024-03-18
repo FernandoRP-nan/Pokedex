@@ -1,4 +1,4 @@
-package mx.pokedex.presentation.composables.dialogs
+package mx.nancrow.pokedex.presentation.composables.dialogs
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -19,7 +19,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import mx.nancrow.R
+import mx.nancrow.pokedex.R
 import mx.pokedex.presentation.composables.images.ImageNormal
 import mx.pokedex.presentation.theme.LocalSpacing
 

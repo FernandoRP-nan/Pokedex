@@ -6,7 +6,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import mx.nancrow.R
+import mx.nancrow.pokedex.R
 
 val quickSand = FontFamily(
     Font(

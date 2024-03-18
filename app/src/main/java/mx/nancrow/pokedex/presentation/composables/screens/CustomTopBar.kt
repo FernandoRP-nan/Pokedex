@@ -1,4 +1,4 @@
-package mx.pokedex.presentation.composables.screens
+package mx.nancrow.pokedex.presentation.composables.screens
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -23,7 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import mx.nancrow.R
+import mx.nancrow.pokedex.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -6,7 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import dagger.hilt.android.lifecycle.HiltViewModel
 import mx.com.satoritech.journeys.presentation.viewmodel.BaseViewModel
-import mx.nancrow.R
+import mx.nancrow.pokedex.R
 import mx.pokedex.presentation.screens.act2.Act2ViewEvent
 import mx.pokedex.presentation.screens.act2.Act2ViewState
 import javax.inject.Inject

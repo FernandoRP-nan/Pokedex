@@ -6,8 +6,8 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import mx.pokedex.presentation.screens.act1.Act1Screen
-import mx.pokedex.presentation.screens.act2.Act2Screen
+import mx.nancrow.pokedex.presentation.screens.act1.Act1Screen
+import mx.nancrow.pokedex.presentation.screens.act2.Act2Screen
 
 @Composable
 fun Navigation(navController: NavController) {

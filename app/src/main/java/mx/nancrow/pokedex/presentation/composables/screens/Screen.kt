@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import mx.nancrow.pokedex.presentation.composables.BottomNavigation
+import mx.nancrow.pokedex.presentation.composables.screens.CustomTopBar
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
