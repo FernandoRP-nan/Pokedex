@@ -28,6 +28,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
@@ -41,6 +42,7 @@ import mx.nancrow.pokedex.presentation.navigation.Screens
 import mx.pokedex.presentation.theme.LocalSpacing
 import mx.nancrow.pokedex.R
 import mx.nancrow.pokedex.domain.model.network.response.PokemonResponse
+import mx.nancrow.pokedex.domain.model.network.response.PokemonSearchResponse
 
 @Composable
 fun HomeScreen(
@@ -65,7 +67,11 @@ fun HomeScreen(
             Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
             TextFieldSearch(
                 value = isPasswordVisible,
-                onValueTextChange = { isPasswordVisible = it.lowercase() },
+                onValueTextChange = {
+                    viewModel.onEvent(HomeViewEvent.LoadSearchData)
+                    viewModel.onEvent(HomeViewEvent.UpdateFilter(it))
+                    isPasswordVisible = it.lowercase()
+                },
                 modifier = Modifier.height(40.dp),
                 hint = stringResource(id = R.string.search_pokemon)
             )
@@ -74,34 +80,45 @@ fun HomeScreen(
                 modifier = Modifier
                     .fillMaxSize(),
             ) {
-                viewModel.state.listPokemon?.let {
-                    LazyColumn(verticalArrangement = Arrangement.spacedBy(spacing.spaceSmall)) {
-                        itemsIndexed(it) { index, pokemon ->
-                            PokemonItem(modifier = Modifier.height(90.dp), pokemon = pokemon) {
-                                navController.currentBackStackEntry?.savedStateHandle?.set(
-                                    "pokemonData",
-                                    pokemon
-                                )
-                                navController.navigate(Screens.ACT_1)
-                            }
-                            if (index == it.lastIndex && !viewModel.state.isLoading) {
-                                viewModel.onEvent(HomeViewEvent.LoadMoreData)
+                if (viewModel.state.searchQuery == "") {
+                    viewModel.state.listPokemon?.let {
+                        LazyColumn(verticalArrangement = Arrangement.spacedBy(spacing.spaceSmall)) {
+                            itemsIndexed(it) { index, pokemon ->
+                                PokemonItem(modifier = Modifier.height(90.dp), pokemon = pokemon) {
+                                    navController.currentBackStackEntry?.savedStateHandle?.set(
+                                        "pokemonData",
+                                        pokemon.id
+                                    )
+                                    navController.navigate(Screens.ACT_1)
+                                }
+                                if (index == it.lastIndex && !viewModel.state.isLoading) {
+                                    viewModel.onEvent(HomeViewEvent.LoadMoreData)
+                                }
                             }
                         }
+                        Spacer(modifier = Modifier.height(spacing.spaceLarge))
                     }
-                    Spacer(modifier = Modifier.height(spacing.spaceLarge))
-                }
-
-                /*viewModel.state.listPokemon?.forEach {
-                    PokemonItem(modifier = Modifier.height(90.dp), pokemon = it){
-                        navController.currentBackStackEntry?.savedStateHandle?.set(
-                            "pokemonData",
-                            it
-                        )
-                        navController.navigate(Screens.ACT_1)
+                } else {
+                    viewModel.state.listFilterPokemonSearch?.let {
+                        LazyColumn(verticalArrangement = Arrangement.spacedBy(spacing.spaceSmall)) {
+                            itemsIndexed(it) { index, pokemon ->
+                                if (pokemon.id != 0) {
+                                    PokemonFilterItem(
+                                        modifier = Modifier.height(60.dp),
+                                        pokemon = pokemon
+                                    ) {
+                                        navController.currentBackStackEntry?.savedStateHandle?.set(
+                                            "pokemonData",
+                                            pokemon.id
+                                        )
+                                        navController.navigate(Screens.ACT_1)
+                                    }
+                                }
+                            }
+                        }
+                        Spacer(modifier = Modifier.height(spacing.spaceLarge))
                     }
                 }
-                Spacer(modifier = Modifier.height(spacing.spaceLarge))*/
             }
         }
     }
@@ -147,6 +164,59 @@ fun PokemonItem(modifier: Modifier, pokemon: PokemonResponse, onClick: () -> Uni
             modifier = Modifier
                 .offset(y = (5).dp)
                 .weight(3.5f),
+        )
+    }
+}
+
+@Composable
+fun PokemonFilterItem(modifier: Modifier, pokemon: PokemonSearchResponse, onClick: () -> Unit) {
+    val spacing = LocalSpacing.current
+    Row(
+        modifier = modifier
+            .clickable { onClick() }
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(10.dp))
+            .background(MaterialTheme.colorScheme.background),
+        horizontalArrangement = Arrangement.spacedBy(spacing.spaceSmall),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = "${pokemon.id} ${pokemon.name.capitalize()}",
+            color = MaterialTheme.colorScheme.onSecondary,
+            style = MaterialTheme.typography.labelMedium,
+            modifier = Modifier
+                .offset(y = (5).dp)
+                .padding(start = spacing.spaceMedium)
+        )
+        val typeNames: List<String> = pokemon.types.map { it.type.name }
+
+        typeNames.forEach {
+            PokemonTypeItem(modifier = Modifier.height(20.dp), pokemonType = it)
+        }
+    }
+}
+
+@Composable
+fun PokemonTypeItem(modifier: Modifier, pokemonType: String) {
+    val spacing = LocalSpacing.current
+    Box(
+        modifier = modifier
+            .clip(shape = RoundedCornerShape(30.dp))
+            .border(
+                width = 1.dp,
+                color = Color.Gray,
+                shape = RoundedCornerShape(30.dp)
+            )
+            .background(Color(0xFF969EBD)),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = pokemonType,
+            color = MaterialTheme.colorScheme.onPrimary,
+            style = MaterialTheme.typography.labelSmall,
+            modifier = Modifier
+                .padding(horizontal = spacing.spaceExtraSmall)
+                .offset(y = (1).dp)
         )
     }
 }

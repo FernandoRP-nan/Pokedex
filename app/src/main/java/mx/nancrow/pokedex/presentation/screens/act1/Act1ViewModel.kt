@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.launch
-import mx.com.satoritech.journeys.presentation.viewmodel.BaseViewModel
+import mx.nancrow.pokedex.presentation.viewmodel.BaseViewModel
 import mx.nancrow.pokedex.R
 import mx.nancrow.pokedex.domain.model.network.response.PokemonResponse
 import mx.nancrow.pokedex.domain.model.network.response.PokemonSpeciesResponse

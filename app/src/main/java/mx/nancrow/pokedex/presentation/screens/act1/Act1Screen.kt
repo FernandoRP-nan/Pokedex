@@ -33,17 +33,16 @@ import mx.nancrow.pokedex.presentation.composables.screens.Screen
 import mx.nancrow.pokedex.presentation.navigation.Screens
 import mx.pokedex.presentation.theme.LocalSpacing
 import mx.nancrow.pokedex.R
-import mx.nancrow.pokedex.domain.model.network.response.PokemonResponse
 
 @Composable
 fun Act1Screen(
     navController: NavController,
     viewModel: Act1ViewModel = hiltViewModel(),
-    pokemonData: PokemonResponse
+    pokemonData: Int
 ) {
     val spacing = LocalSpacing.current
 
-    viewModel.onEvent(Act1ViewEvent.GetPokemon(pokemonData.id))
+    viewModel.onEvent(Act1ViewEvent.GetPokemon(pokemonData))
 
     Screen(
         navController = navController,
@@ -159,7 +158,7 @@ fun Act1Screen(
                         .padding(bottom = spacing.spaceLarge),
                     label = R.string.save
                 ) {
-                    viewModel.onEvent(Act1ViewEvent.GetPokemon(pokemonData.id))
+                    viewModel.onEvent(Act1ViewEvent.GetPokemon(pokemonData))
                 }
             }
         }

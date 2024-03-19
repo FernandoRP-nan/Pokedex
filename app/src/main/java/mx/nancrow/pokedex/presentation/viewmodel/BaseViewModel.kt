@@ -1,4 +1,4 @@
-package mx.com.satoritech.journeys.presentation.viewmodel
+package mx.nancrow.pokedex.presentation.viewmodel
 
 import android.app.Application
 import android.widget.Toast

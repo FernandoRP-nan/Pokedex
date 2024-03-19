@@ -59,15 +59,17 @@ fun CustomTopBar(
             horizontalArrangement = Arrangement.spacedBy(spacing.spaceSmall),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            ImageNormal(
-                modifier = Modifier.size(30.dp), imageName = R.drawable.poke_ball_icon
-            )
             if (title != null) {
+
                 Text(
                     text = title,
                     modifier = Modifier,
                     style = MaterialTheme.typography.bodySmall,
                     color = iconColors
+                )
+            } else {
+                ImageNormal(
+                    modifier = Modifier.size(50.dp), imageName = R.drawable.poke_ball_icon
                 )
             }
         }

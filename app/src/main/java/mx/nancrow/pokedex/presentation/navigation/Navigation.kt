@@ -6,7 +6,6 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import mx.nancrow.pokedex.domain.model.network.response.PokemonResponse
 import mx.nancrow.pokedex.presentation.screens.act1.Act1Screen
 import mx.nancrow.pokedex.presentation.screens.act2.Act2Screen
 import mx.nancrow.pokedex.presentation.screens.home.HomeScreen
@@ -22,8 +21,8 @@ fun Navigation(navController: NavController) {
         }
         composable(Screens.ACT_1) {
             val pokemonData =
-                navController.previousBackStackEntry?.savedStateHandle?.get<PokemonResponse>("pokemonData")
-                    ?: PokemonResponse()
+                navController.previousBackStackEntry?.savedStateHandle?.get<Int>("pokemonData")
+                    ?: 0
             Act1Screen(navController, pokemonData = pokemonData)
         }
         composable(Screens.ACT_2) {
