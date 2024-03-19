@@ -31,7 +31,7 @@ import androidx.navigation.NavController
 import mx.nancrow.pokedex.R
 import mx.nancrow.pokedex.presentation.composables.buttons.BasicButton
 import mx.nancrow.pokedex.presentation.navigation.Screens
-import mx.pokedex.presentation.composables.screens.Screen
+import mx.nancrow.pokedex.presentation.composables.screens.Screen
 import mx.nancrow.pokedex.presentation.composables.textfields.GenericTextField
 import mx.pokedex.presentation.screens.act2.Act2ViewEvent
 import mx.pokedex.presentation.theme.LocalSpacing

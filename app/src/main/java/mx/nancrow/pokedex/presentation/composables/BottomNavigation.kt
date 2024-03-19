@@ -28,7 +28,7 @@ private val items = listOf(
     NavigationItem(
         title = "Pokemon",
         icon = R.drawable.home,
-        route = Screens.ACT_1
+        route = Screens.HOME
     ),
     NavigationItem(
         title = "Favoritos",

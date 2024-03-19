@@ -20,38 +20,39 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import mx.nancrow.pokedex.presentation.composables.buttons.BasicButton
-import mx.pokedex.presentation.composables.screens.Screen
-import mx.nancrow.pokedex.presentation.composables.textfields.TextFieldSearch
+import mx.nancrow.pokedex.presentation.composables.screens.Screen
 import mx.nancrow.pokedex.presentation.navigation.Screens
 import mx.pokedex.presentation.theme.LocalSpacing
 import mx.nancrow.pokedex.R
+import mx.nancrow.pokedex.domain.model.network.response.PokemonResponse
 import mx.pokedex.presentation.composables.images.ImageNormal
 
 @Composable
 fun Act1Screen(
-    navController: NavController, viewModel: Act1ViewModel = hiltViewModel()
+    navController: NavController,
+    viewModel: Act1ViewModel = hiltViewModel(),
+    pokemonData: PokemonResponse
 ) {
     val spacing = LocalSpacing.current
-    var isPasswordVisible by rememberSaveable { mutableStateOf("") }
+
+    viewModel.onEvent(Act1ViewEvent.GetPokemon(pokemonData.id))
 
     Screen(
-        navController = navController, buttonBack = false, currentRoute = Screens.ACT_1
+        navController = navController,
+        buttonBack = true,
+        currentRoute = Screens.ACT_1,
+        title = " ${viewModel.state.pokemon?.id} ${viewModel.state.pokemon?.name?.capitalize()}"
     ) {
         Column(
             modifier = Modifier
@@ -63,32 +64,11 @@ fun Act1Screen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
-            TextFieldSearch(
-                value = isPasswordVisible,
-                onValueTextChange = { isPasswordVisible = it.lowercase() },
-                modifier = Modifier.height(40.dp),
-                hint = stringResource(id = R.string.search_pokemon)
-            )
             Row(
-                modifier = Modifier.weight(1f),
-                horizontalArrangement = Arrangement.spacedBy(spacing.spaceSmall),
-                verticalAlignment = Alignment.CenterVertically
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(4f)
             ) {
-                ImageNormal(
-                    modifier = Modifier.size(30.dp), imageName = R.drawable.poke_ball_icon
-                )
-                viewModel.state.pokemon?.let {
-                    Text(
-                        text = "${it.id} ${it.name.capitalize()}",
-                        color = MaterialTheme.colorScheme.onPrimary,
-                        style = MaterialTheme.typography.bodySmall,
-                        modifier = Modifier.offset(y = (5).dp),
-                    )
-                }
-            }
-            Row(modifier = Modifier
-                .fillMaxWidth()
-                .weight(4f)) {
                 Box(
                     modifier = Modifier
                         .border(
@@ -116,7 +96,33 @@ fun Act1Screen(
                 Box(
                     modifier = Modifier
                         .weight(1f)
-                        .fillMaxHeight(.4f)
+                ) {
+
+                }
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .border(
+                            width = 10.dp,
+                            color = MaterialTheme.colorScheme.primaryContainer,
+                            shape = RoundedCornerShape(10.dp)
+                        )
+                        .clip(RoundedCornerShape(10.dp))
+                        .clip(RectangleShape)
+                        .weight(1f)
+                        .background(MaterialTheme.colorScheme.background)
+
+                ) {
+
+                }
+                Box(
+                    modifier = Modifier
+                        .weight(.5f)
                 ) {
 
                 }
@@ -125,7 +131,7 @@ fun Act1Screen(
                 modifier = Modifier
                     .padding(horizontal = spacing.spaceSmall)
                     .fillMaxWidth()
-                    .weight(4f)
+                    .weight(5.5f)
                     .clip(RoundedCornerShape(10.dp))
                     .background(MaterialTheme.colorScheme.background)
                     .border(
@@ -136,7 +142,7 @@ fun Act1Screen(
                 Box(
                     modifier = Modifier
                         .weight(7f)
-                        .padding(horizontal = spacing.spaceMedium)
+                        .padding(horizontal = spacing.spaceLarge)
                         .verticalScroll(rememberScrollState()),
                     contentAlignment = Alignment.Center
                 ) {
@@ -154,9 +160,9 @@ fun Act1Screen(
                     modifier = Modifier
                         .weight(3f)
                         .padding(bottom = spacing.spaceLarge),
-                    label = R.string.obtener
+                    label = R.string.save
                 ) {
-                    viewModel.onEvent(Act1ViewEvent.GetRandomPokemon)
+                    viewModel.onEvent(Act1ViewEvent.GetPokemon(pokemonData.id))
                 }
             }
         }

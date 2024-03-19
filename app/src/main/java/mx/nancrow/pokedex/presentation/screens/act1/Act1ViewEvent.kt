@@ -6,5 +6,5 @@ sealed interface Act1ViewEvent{
     object OnHiddenDialogError: Act1ViewEvent
     object OnShowDialogError: Act1ViewEvent
     object Login: Act1ViewEvent
-    object GetRandomPokemon: Act1ViewEvent
+    data class  GetPokemon(val pokemonId: Int): Act1ViewEvent
 }

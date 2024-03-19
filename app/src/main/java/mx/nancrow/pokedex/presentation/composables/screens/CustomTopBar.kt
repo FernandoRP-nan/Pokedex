@@ -3,6 +3,7 @@ package mx.nancrow.pokedex.presentation.composables.screens
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,16 +25,19 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import mx.nancrow.pokedex.R
+import mx.pokedex.presentation.composables.images.ImageNormal
+import mx.pokedex.presentation.theme.LocalSpacing
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CustomTopBar(
     navController: NavController,
     buttonBack: Boolean = true,
-    @StringRes title: Int? = null,
+    title: String? = null,
     @DrawableRes profileIcon: Int? = null,
-    iconColors: Color = MaterialTheme.colorScheme.primary
+    iconColors: Color = MaterialTheme.colorScheme.background
 ) {
+    val spacing = LocalSpacing.current
     Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
         Box(
             modifier = Modifier
@@ -52,13 +56,17 @@ fun CustomTopBar(
                 }
             }
         }
-        Box(
-            modifier = Modifier
-                .weight(5f)
+        Row(
+            modifier = Modifier.weight(5f),
+            horizontalArrangement = Arrangement.spacedBy(spacing.spaceSmall),
+            verticalAlignment = Alignment.CenterVertically
         ) {
+            ImageNormal(
+                modifier = Modifier.size(30.dp), imageName = R.drawable.poke_ball_icon
+            )
             if (title != null) {
                 Text(
-                    text = stringResource(id = title),
+                    text = title,
                     modifier = Modifier,
                     style = MaterialTheme.typography.bodySmall,
                     color = iconColors

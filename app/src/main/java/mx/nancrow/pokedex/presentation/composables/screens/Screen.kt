@@ -1,4 +1,4 @@
-package mx.pokedex.presentation.composables.screens
+package mx.nancrow.pokedex.presentation.composables.screens
 
 import android.annotation.SuppressLint
 import androidx.annotation.StringRes
@@ -16,20 +16,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import mx.nancrow.pokedex.presentation.composables.BottomNavigation
-import mx.nancrow.pokedex.presentation.composables.screens.CustomTopBar
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun Screen(
     navController: NavController,
     buttonBack: Boolean = true,
-    @StringRes title: Int? = null,
-    containerColor: Color = MaterialTheme.colorScheme.background,
-    colorStatusBar: Color = Color.White,
-    darkIconsStatusBar: Boolean = true,
+    title: String? = null,
+    containerColor: Color = MaterialTheme.colorScheme.primary,
+    colorStatusBar: Color = MaterialTheme.colorScheme.primary,
+    darkIconsStatusBar: Boolean = false,
     paddingTop: Boolean = true,
     currentRoute: String,
-    iconColors: Color = MaterialTheme.colorScheme.primary,
+    iconColors: Color = MaterialTheme.colorScheme.background,
     content: @Composable BoxScope. () -> Unit
 ) {
     val systemUiController = rememberSystemUiController()

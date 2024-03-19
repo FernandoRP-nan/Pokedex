@@ -23,7 +23,7 @@
     <string name="result_is">"El resultado es: "</string>
     <string name="prome_is">"Tu promedio es: "</string>
     <string name="result_prom_is">"Tú estás: "</string>
-    <string name="obtener">"Obtener pokemon"</string>
+    <string name="save">"Guardar pokémon"</string>
     <string name="search_pokemon">Buscar pokemon</string>
 
 
