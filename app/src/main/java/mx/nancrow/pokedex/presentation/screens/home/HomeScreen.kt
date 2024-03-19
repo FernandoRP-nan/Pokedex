@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -42,7 +44,8 @@ import mx.nancrow.pokedex.domain.model.network.response.PokemonResponse
 
 @Composable
 fun HomeScreen(
-    navController: NavController, viewModel: HomeViewModel = hiltViewModel()
+    navController: NavController,
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
     val spacing = LocalSpacing.current
     var isPasswordVisible by rememberSaveable { mutableStateOf("") }
@@ -69,11 +72,27 @@ fun HomeScreen(
             Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
             Column(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .verticalScroll(rememberScrollState()),
-                verticalArrangement = Arrangement.spacedBy(spacing.spaceSmall),
+                    .fillMaxSize(),
             ) {
-                viewModel.state.listPokemon?.forEach {
+                viewModel.state.listPokemon?.let {
+                    LazyColumn(verticalArrangement = Arrangement.spacedBy(spacing.spaceSmall)) {
+                        itemsIndexed(it) { index, pokemon ->
+                            PokemonItem(modifier = Modifier.height(90.dp), pokemon = pokemon) {
+                                navController.currentBackStackEntry?.savedStateHandle?.set(
+                                    "pokemonData",
+                                    pokemon
+                                )
+                                navController.navigate(Screens.ACT_1)
+                            }
+                            if (index == it.lastIndex && !viewModel.state.isLoading) {
+                                viewModel.onEvent(HomeViewEvent.LoadMoreData)
+                            }
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(spacing.spaceLarge))
+                }
+
+                /*viewModel.state.listPokemon?.forEach {
                     PokemonItem(modifier = Modifier.height(90.dp), pokemon = it){
                         navController.currentBackStackEntry?.savedStateHandle?.set(
                             "pokemonData",
@@ -82,7 +101,7 @@ fun HomeScreen(
                         navController.navigate(Screens.ACT_1)
                     }
                 }
-                Spacer(modifier = Modifier.height(spacing.spaceLarge))
+                Spacer(modifier = Modifier.height(spacing.spaceLarge))*/
             }
         }
     }
@@ -92,7 +111,8 @@ fun HomeScreen(
 fun PokemonItem(modifier: Modifier, pokemon: PokemonResponse, onClick: () -> Unit) {
     val spacing = LocalSpacing.current
     Row(
-        modifier = modifier.clickable { onClick() }
+        modifier = modifier
+            .clickable { onClick() }
             .fillMaxWidth()
             .clip(RoundedCornerShape(10.dp))
             .background(MaterialTheme.colorScheme.background),

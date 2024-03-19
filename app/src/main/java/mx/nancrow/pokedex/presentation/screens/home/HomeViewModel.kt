@@ -39,28 +39,29 @@ class HomeViewModel @Inject constructor(
             is HomeViewEvent.OnEmailChange -> onTextChange(event.newText)
             HomeViewEvent.OnHiddenDialogError -> showDialogLogout(false)
             HomeViewEvent.OnShowDialogError -> showDialogLogout(true)
+            HomeViewEvent.LoadMoreData -> loadMoreData()
         }
     }
 
-    private var pokemon by mutableStateOf(state.listPokemon)
+    private var pokemon by mutableStateOf(state.listPokemon ?: emptyList())
+
+    private var offset = 0 // Inicialmente, offset es 0
 
     private fun fetchListPokemon() {
         viewModelScope.launch {
             try {
-                when (val response = listPokemonUseCase.invoke(20, 0)) {
+                when (val response = listPokemonUseCase.invoke(20, offset)) {
                     is Resource.Error -> {
-                        //uiState = uiState.copy(isLoading = false)
                         _uiEvent.send(HomeUiEvent.ShowSnackBar(response.message ?: ""))
                         println("$response hubo error")
                     }
                     is Resource.Success -> {
-                        pokemon = convertToListPokemon(response.data)
-                        println("${response.data}" )
-                        println("${convertToListPokemon(response.data)} aqui la lista convertida" )
-                        state = state.copy(listPokemon = pokemon)
+                        val newPokemon = convertToListPokemon(response.data)
+                        val updatedPokemonList = (pokemon + newPokemon).distinct() // Crea una nueva lista combinando los datos existentes y los nuevos
+                        state = state.copy(listPokemon = updatedPokemonList)
+                        offset += 20 // Incrementa el offset para la próxima carga
                     }
                 }
-                println("la lista con únicamente los nombres $pokemon")
                 fetchListPokemonWithImage()
             } catch (e: Exception) {
                 println("error: $e")
@@ -68,12 +69,53 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    private fun loadMoreData() {
+        if (!state.isLoading) {
+            viewModelScope.launch {
+                try {
+                    state= state.copy(isLoading = true)// Marcar como cargando
+
+                    // Llamar a la función en tu caso de uso para obtener más datos de la API
+                    when (val response = listPokemonUseCase.invoke(20, offset)) {
+                        is Resource.Error -> {
+                            // Manejar el error
+                            println("$response hubo error")
+                        }
+                        is Resource.Success -> {
+                            val newPokemon = convertToListPokemon(response.data)
+                            offset += 20 // Incrementa el offset para la próxima carga
+                            pokemon = newPokemon
+                            // Agregar los nuevos datos a la lista existente
+                            val updatedPokemonList = state.listPokemon?.plus(newPokemon)
+                            state = state.copy(listPokemon = updatedPokemonList)
+                        }
+                    }
+                    fetchListNewPokemonWithImage(pokemon)
+                } catch (e: Exception) {
+                    // Manejar la excepción
+                    println("error: $e")
+                } finally {
+                    state= state.copy(isLoading = false) // Marcar como no cargando
+                }
+            }
+        }
+    }
+
+
     private fun fetchListPokemonWithImage() {
         state.listPokemon?.forEach{
             fetchPokemonByName(it.name)
         }
         println("la lista con los nombres e imagenes ${state.listPokemon}")
     }
+
+    private fun fetchListNewPokemonWithImage(newPokemon: List<PokemonResponse>) {
+        newPokemon.forEach{
+            fetchPokemonByName(it.name)
+        }
+    }
+
+
 
         private fun fetchPokemonByName(pokemonName: String) {
         viewModelScope.launch {
@@ -85,7 +127,8 @@ class HomeViewModel @Inject constructor(
                     }
 
                     is Resource.Success -> {
-                        pokemon = mergeSpritesWithNames(pokemon!!, response.data!!)
+                        pokemon = state.listPokemon!!
+                        pokemon = mergeSpritesWithNames(pokemon, response.data!!)
                         state = state.copy(listPokemon = pokemon)
                     }
                 }

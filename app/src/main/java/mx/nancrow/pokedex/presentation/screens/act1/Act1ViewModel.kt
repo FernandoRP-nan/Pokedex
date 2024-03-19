@@ -12,7 +12,6 @@ import mx.com.satoritech.journeys.presentation.viewmodel.BaseViewModel
 import mx.nancrow.pokedex.R
 import mx.nancrow.pokedex.domain.model.network.response.PokemonResponse
 import mx.nancrow.pokedex.domain.model.network.response.PokemonSpeciesResponse
-import mx.nancrow.pokedex.domain.use_case.PokemonByNameUseCase
 import mx.nancrow.pokedex.domain.use_case.PokemonSpeciesUseCase
 import mx.nancrow.pokedex.domain.use_case.PokemonUseCase
 import mx.nancrow.pokedex.util.Resource
@@ -23,7 +22,6 @@ class Act1ViewModel @Inject constructor(
     application: Application,
     private val pokemonUseCase: PokemonUseCase,
     private val pokemonSpeciesUseCase: PokemonSpeciesUseCase,
-    private val pokemonByNameUseCase: PokemonByNameUseCase,
     ) : BaseViewModel(application) {
 
     var state by mutableStateOf(Act1ViewState())

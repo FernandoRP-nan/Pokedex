@@ -4,4 +4,5 @@ sealed interface HomeViewEvent{
     data class OnEmailChange(val newText: String): HomeViewEvent
     object OnHiddenDialogError: HomeViewEvent
     object OnShowDialogError: HomeViewEvent
+    object LoadMoreData: HomeViewEvent
 }
