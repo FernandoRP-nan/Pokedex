@@ -15,8 +15,6 @@ import mx.nancrow.pokedex.domain.model.network.response.PokemonSpeciesResponse
 import mx.nancrow.pokedex.domain.use_case.PokemonByNameUseCase
 import mx.nancrow.pokedex.domain.use_case.PokemonSpeciesUseCase
 import mx.nancrow.pokedex.domain.use_case.PokemonUseCase
-import mx.nancrow.pokedex.presentation.screens.home.HomeUiEvent
-import mx.nancrow.pokedex.presentation.screens.home.mergeSpritesWithNames
 import mx.nancrow.pokedex.util.Resource
 import javax.inject.Inject
 

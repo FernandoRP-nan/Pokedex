@@ -9,14 +9,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.launch
 import mx.com.satoritech.journeys.presentation.viewmodel.BaseViewModel
-import mx.nancrow.pokedex.R
 import mx.nancrow.pokedex.domain.model.network.response.ListPokemonResponse
-import mx.nancrow.pokedex.domain.model.network.response.NamedAPIResource
 import mx.nancrow.pokedex.domain.model.network.response.PokemonResponse
 import mx.nancrow.pokedex.domain.use_case.ListPokemonUseCase
 import mx.nancrow.pokedex.domain.use_case.PokemonByNameUseCase
-import mx.nancrow.pokedex.presentation.screens.act1.PokemonDataClass
-import mx.nancrow.pokedex.presentation.screens.act1.PokemonUiEvent
 import mx.nancrow.pokedex.util.Resource
 import javax.inject.Inject
 

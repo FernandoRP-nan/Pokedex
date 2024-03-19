@@ -1,6 +1,5 @@
 package mx.nancrow.pokedex.presentation.screens.home
 
-import mx.nancrow.pokedex.domain.model.network.response.ListPokemonResponse
 import mx.nancrow.pokedex.domain.model.network.response.PokemonResponse
 import mx.pokedex.presentation.viewstate.ViewState
 

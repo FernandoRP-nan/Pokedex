@@ -7,7 +7,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import mx.nancrow.pokedex.domain.model.network.response.PokemonResponse
-import mx.nancrow.pokedex.presentation.navigation.Screens
 import mx.nancrow.pokedex.presentation.screens.act1.Act1Screen
 import mx.nancrow.pokedex.presentation.screens.act2.Act2Screen
 import mx.nancrow.pokedex.presentation.screens.home.HomeScreen
