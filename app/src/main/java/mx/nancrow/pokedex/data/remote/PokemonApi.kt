@@ -22,7 +22,6 @@ interface PokemonApiService {
     suspend fun getPokemon(
         @Path("id") pokemonId: Int
     ): PokemonResponse
-
     @GET("pokemon/{pokemonName}/")
     suspend fun getPokemonSearch(
         @Path("pokemonName") pokemonName: String
@@ -31,7 +30,6 @@ interface PokemonApiService {
     suspend fun getPokemonByName(
         @Path("name") pokemonName: String
     ): PokemonResponse
-
     @GET("pokemon-species/{id}/")
     suspend fun getPokemonSpecies(
         @Path("id") pokemonId: Int

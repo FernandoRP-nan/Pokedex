@@ -1,6 +1,5 @@
 package mx.nancrow.pokedex.domain.use_case
 
-import mx.nancrow.pokedex.domain.model.network.response.PokemonResponse
 import mx.nancrow.pokedex.domain.model.network.response.PokemonSearchResponse
 import mx.nancrow.pokedex.util.Resource
 
