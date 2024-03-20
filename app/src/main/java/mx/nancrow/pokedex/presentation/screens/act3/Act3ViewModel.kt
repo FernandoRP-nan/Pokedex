@@ -1,7 +1,6 @@
 package mx.nancrow.pokedex.presentation.screens.act3
 
 import android.app.Application
-import android.widget.Toast
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue

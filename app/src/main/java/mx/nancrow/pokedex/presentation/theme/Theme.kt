@@ -18,7 +18,6 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import mx.nancrow.pokedex.domain.preferences.Preferences
 
 private val DarkColorScheme = darkColorScheme(
     primary = Primary,
@@ -92,12 +91,4 @@ fun PokedexTheme(
         typography = Typography,
         content = content
     )
-}
-
-private fun hideSystemUI(window: Window) {
-    WindowCompat.setDecorFitsSystemWindows(window, false)
-    WindowInsetsControllerCompat(window, window.decorView).let { controller ->
-        controller.hide(WindowInsetsCompat.Type.systemBars())
-        controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-    }
 }

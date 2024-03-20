@@ -21,7 +21,6 @@ import mx.nancrow.pokedex.presentation.composables.BottomNavigation
 @Composable
 fun Screen(
     navController: NavController,
-    buttonBack: Boolean = true,
     title: String? = null,
     containerColor: Color = MaterialTheme.colorScheme.primary,
     colorStatusBar: Color = MaterialTheme.colorScheme.primary,
@@ -41,8 +40,6 @@ fun Screen(
     Scaffold(
         topBar = {
             CustomTopBar(
-                navController = navController,
-                buttonBack = buttonBack,
                 title = title,
                 iconColors = iconColors
             )

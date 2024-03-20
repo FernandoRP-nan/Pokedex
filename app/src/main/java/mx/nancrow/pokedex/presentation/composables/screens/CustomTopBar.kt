@@ -21,13 +21,9 @@ import mx.nancrow.pokedex.R
 import mx.pokedex.presentation.composables.images.ImageNormal
 import mx.pokedex.presentation.theme.LocalSpacing
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CustomTopBar(
-    navController: NavController,
-    buttonBack: Boolean = true,
     title: String? = null,
-    @DrawableRes profileIcon: Int? = null,
     iconColors: Color = MaterialTheme.colorScheme.onPrimary
 ) {
     val spacing = LocalSpacing.current
