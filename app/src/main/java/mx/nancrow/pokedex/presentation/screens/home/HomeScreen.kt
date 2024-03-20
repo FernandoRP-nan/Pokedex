@@ -183,7 +183,7 @@ fun PokemonFilterItem(modifier: Modifier, pokemon: PokemonSearchResponse, onClic
     ) {
         Text(
             text = "${pokemon.id} ${pokemon.name.capitalize()}",
-            color = MaterialTheme.colorScheme.onBackground,
+            color = MaterialTheme.colorScheme.onPrimary,
             style = MaterialTheme.typography.labelMedium,
             modifier = Modifier
                 .offset(y = (5).dp)
@@ -205,16 +205,16 @@ fun PokemonTypeItem(modifier: Modifier, pokemonType: String) {
             .clip(shape = RoundedCornerShape(30.dp))
             .border(
                 width = 1.dp,
-                color = MaterialTheme.colorScheme.onPrimary,
+                color = MaterialTheme.colorScheme.onSecondary,
                 shape = RoundedCornerShape(30.dp)
             )
             //.background(Color(0xFF969EBD))
-            .background(MaterialTheme.colorScheme.onSecondary),
+            .background(MaterialTheme.colorScheme.onPrimary),
         contentAlignment = Alignment.Center
     ) {
         Text(
             text = pokemonType.capitalize(),
-            color = MaterialTheme.colorScheme.onPrimary,
+            color = MaterialTheme.colorScheme.onSecondary,
             style = MaterialTheme.typography.labelSmall,
             modifier = Modifier
                 .padding(horizontal = spacing.spaceExtraSmall)

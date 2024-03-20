@@ -53,7 +53,7 @@ fun BottomNavigation(
                     Icon(
                         painterResource(navigationItem.icon),
                         contentDescription = navigationItem.title,
-                        modifier = Modifier.size(24.dp)
+                        modifier = Modifier.size(30.dp)
                     )
                 },
                 //label = { Text(navigationItem.title, fontSize = 6.sp) },
@@ -66,10 +66,10 @@ fun BottomNavigation(
                 },
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = MaterialTheme.colorScheme.primary,
-                    selectedTextColor = MaterialTheme.colorScheme.background,
-                    unselectedIconColor = MaterialTheme.colorScheme.background,
+                    selectedTextColor = MaterialTheme.colorScheme.onPrimary,
+                    unselectedIconColor = MaterialTheme.colorScheme.onPrimary,
                     unselectedTextColor = MaterialTheme.colorScheme.primary,
-                    indicatorColor = MaterialTheme.colorScheme.background,
+                    indicatorColor = MaterialTheme.colorScheme.onPrimary,
                 )
             )
         }

@@ -29,6 +29,8 @@
     <string name="title_favorites">Favoritos</string>
     <string name="title_home">Pokédex</string>
     <string name="title_config">Ajustes</string>
-    <string name="change_mode">Cambiar tema</string>
+    <string name="change_mode">Modo noche</string>
+    <string name="made_by">Aplicación hecha por:</string>
+    <string name="my_name">Fernando Rodríguez Prianti</string>
 
 </resources>

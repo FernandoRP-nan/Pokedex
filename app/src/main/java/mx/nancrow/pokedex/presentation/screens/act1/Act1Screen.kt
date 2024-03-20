@@ -66,7 +66,7 @@ fun Act1Screen(
         navController = navController,
         buttonBack = true,
         currentRoute = Screens.ACT_1,
-        title = " ${viewModel.state.pokemon?.id} ${viewModel.state.pokemon?.name?.capitalize()}"
+        title = "${viewModel.state.pokemon?.id} ${viewModel.state.pokemon?.name?.capitalize()}"
     ) {
         Column(
             modifier = Modifier
@@ -200,11 +200,10 @@ fun Act1Screen(
                         style = MaterialTheme.typography.labelMedium,
                         fontWeight = FontWeight(500),
                         modifier = Modifier.offset(
-                            y = (5).dp//, x = (-5).dp
+                            y = (5).dp
                         ),
                         textAlign = TextAlign.Center,
                         letterSpacing = 0.sp
-                        //lineHeight = 10.sp,
                     )
                     Spacer(modifier = Modifier.height(spacing.spaceMedium))
                     Text(
@@ -217,22 +216,7 @@ fun Act1Screen(
                         ),
                         textAlign = TextAlign.Center,
                         letterSpacing = 0.sp
-                        //lineHeight = 10.sp,
                     )
-                    /*
-                    Spacer(modifier = Modifier.height(spacing.spaceSmall))
-                    Row(
-                        modifier = Modifier,
-                        horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium)
-                    ) {
-                        it.types.forEach {
-                            PokemonTypeItem(
-                                modifier = Modifier.height(30.dp),
-                                pokemonType = it.type.name
-                            )
-                        }
-                    }
-                    */
                 }
             }
 
@@ -242,7 +226,7 @@ fun Act1Screen(
                     .padding(horizontal = spacing.spaceSmall)
                     .border(
                         width = 10.dp,
-                        color = MaterialTheme.colorScheme.onSecondary,
+                        color = MaterialTheme.colorScheme.onPrimary,
                     )
             ) {
                 Column(
@@ -267,7 +251,7 @@ fun Act1Screen(
                         viewModel.state.pokemon?.let {
                             Text(
                                 text = "${"Descripción:"} \n\n${it.description.capitalize()}",
-                                color = MaterialTheme.colorScheme.onBackground,
+                                color = MaterialTheme.colorScheme.onSecondary,
                                 style = MaterialTheme.typography.labelLarge,
                                 modifier = Modifier.offset(y = (5).dp),
                                 textAlign = TextAlign.Justify
@@ -282,7 +266,8 @@ fun Act1Screen(
                             R.string.delete
                         } else {
                             R.string.save
-                        }
+                        },
+                        bold = true
                     ) {
                         viewModel.state.pokemon?.let {
                             viewModel.onEvent(Act1ViewEvent.FavoritePokemon(it))

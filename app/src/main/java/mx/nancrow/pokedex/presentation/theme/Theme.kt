@@ -22,11 +22,11 @@ import mx.nancrow.pokedex.domain.preferences.Preferences
 
 private val DarkColorScheme = darkColorScheme(
     primary = Primary,
-    onPrimary = OnPrimary,
+    onPrimary = OnSecondary,
     primaryContainer = PrimaryVariant,
     onPrimaryContainer = Secondary,
     secondary = Secondary,
-    onSecondary = OnSecondary,
+    onSecondary = OnPrimary,
     secondaryContainer = SecondaryVariant,
     background = OnBackground,
     onBackground = Background,

@@ -1,6 +1,7 @@
 package mx.nancrow.pokedex.presentation.screens.act3
 
 import android.app.Application
+import android.widget.Toast
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -34,7 +35,11 @@ class Act3ViewModel @Inject constructor(
         val itemsSettings = listOf<SettingsType>(
             SettingsType(
                 label = R.string.change_mode,
-                icon = R.drawable.settings
+                icon = if (preferences.loadDarkTheme()) {
+                    R.drawable.toggle_on
+                } else {
+                    R.drawable.toggle_off
+                }
             )
         )
         state = state.copy(
@@ -48,9 +53,11 @@ class Act3ViewModel @Inject constructor(
             R.string.change_mode -> {
                 println("el color es: ${preferences.loadDarkTheme()}")
                 preferences.isDarkTheme(!preferences.loadDarkTheme())
+                setSettings()
             }
         }
     }
+
 }
 
 
