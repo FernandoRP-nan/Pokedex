@@ -22,7 +22,6 @@ import mx.nancrow.pokedex.domain.model.network.response.PokemonResponse
 import mx.nancrow.pokedex.domain.model.network.response.Sprites
 import mx.nancrow.pokedex.presentation.navigation.Screens
 import mx.nancrow.pokedex.presentation.composables.screens.Screen
-import mx.nancrow.pokedex.presentation.screens.act3.Act3ViewModel
 import mx.nancrow.pokedex.presentation.screens.home.PokemonItem
 import mx.pokedex.presentation.theme.LocalSpacing
 
@@ -34,7 +33,6 @@ fun Act2Screen(
     val spacing = LocalSpacing.current
     Screen(
         navController = navController,
-        buttonBack = false,
         currentRoute = Screens.ACT_2,
         title = stringResource(id = R.string.title_favorites)
     ) {

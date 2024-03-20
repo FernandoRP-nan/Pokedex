@@ -181,7 +181,7 @@ fun PokemonFilterItem(modifier: Modifier, pokemon: PokemonSearchResponse, onClic
     ) {
         Text(
             text = "${pokemon.id} ${pokemon.name.capitalize()}",
-            color = MaterialTheme.colorScheme.onPrimary,
+            color = MaterialTheme.colorScheme.onSecondary,
             style = MaterialTheme.typography.labelMedium,
             modifier = Modifier
                 .offset(y = (5).dp)
