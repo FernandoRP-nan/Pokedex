@@ -17,10 +17,4 @@ object ProjectConfig {
     const val baseUrlDev = "https://pokeapi.co/api/v2/"
     const val baseUrlProd = ""
 
-    //signing config for release
-    /*
-    const val storeFile = "../keys/satori_2020.jks"
-    const val storePassword = "123456"
-    const val keyAlias = "satoritech"
-    const val keyPassword = "123456"*/
 }
