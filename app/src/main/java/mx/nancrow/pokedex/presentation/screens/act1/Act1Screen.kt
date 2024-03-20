@@ -51,7 +51,6 @@ fun Act1Screen(
 
     Screen(
         navController = navController,
-        buttonBack = true,
         currentRoute = Screens.ACT_1,
         title = "${viewModel.state.pokemon?.id} ${viewModel.state.pokemon?.name?.capitalize()}"
     ) {

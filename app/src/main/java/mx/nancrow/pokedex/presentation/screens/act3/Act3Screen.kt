@@ -45,7 +45,6 @@ fun Act3Screen(
 
     Screen(
         navController = navController,
-        buttonBack = false,
         currentRoute = Screens.ACT_3,
         title = stringResource(id = R.string.title_config)
     ) {
