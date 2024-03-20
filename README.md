@@ -5,6 +5,8 @@
 - Lista de Pokémon favoritos.
 - Modo oscuro con guardado de preferencias.
 
+<img src="https://github.com/FernandoRP-nan/pokedex/assets/101738379/ef1b10a0-acd1-404f-b749-70ec8ed83ec4" width="100">
+
 ![image](https://github.com/FernandoRP-nan/pokedex/assets/101738379/ef1b10a0-acd1-404f-b749-70ec8ed83ec4  | width=100)
 ![image](https://github.com/FernandoRP-nan/pokedex/assets/101738379/e9dbd38b-3c9e-405b-9375-0b3c8ef72cf4  | width=100)
 ![image](https://github.com/FernandoRP-nan/pokedex/assets/101738379/251a542f-1289-4127-9293-0668f34d6ead  | width=100)
