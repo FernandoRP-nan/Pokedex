@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import mx.nancrow.pokedex.data.local.FestLoversDatabase
+import mx.nancrow.pokedex.data.local.PokemonDatabase
 import javax.inject.Singleton
 
 @Module
@@ -17,10 +17,10 @@ object LocalModule {
     @Singleton
     fun provideFestLoversDatabase(
         app: Application
-    ): FestLoversDatabase {
+    ): PokemonDatabase {
         return Room.databaseBuilder(
             app,
-            FestLoversDatabase::class.java,
+            PokemonDatabase::class.java,
             "fest_lovers_database"
         )
             .fallbackToDestructiveMigration()

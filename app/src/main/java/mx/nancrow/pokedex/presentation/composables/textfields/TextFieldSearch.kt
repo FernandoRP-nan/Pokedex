@@ -6,6 +6,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -51,7 +52,8 @@ fun TextFieldSearch(
                     shape = RoundedCornerShape(20.dp)
                 )
                 .clip(shape = RoundedCornerShape(20.dp))
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .height(40.dp),
             interactionSource = interactionSource,
             enabled = true,
             singleLine = true,

@@ -60,10 +60,12 @@ fun CustomTopBar(
             verticalAlignment = Alignment.CenterVertically
         ) {
             if (title != null) {
-
+                ImageNormal(
+                    modifier = Modifier.size(35.dp), imageName = R.drawable.poke_ball_icon
+                )
                 Text(
                     text = title,
-                    modifier = Modifier,
+                    modifier = Modifier.padding(top = spacing.spaceSmall),
                     style = MaterialTheme.typography.bodySmall,
                     color = iconColors
                 )

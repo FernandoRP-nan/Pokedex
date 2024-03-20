@@ -51,7 +51,10 @@ fun HomeScreen(
     var isPasswordVisible by rememberSaveable { mutableStateOf("") }
 
     Screen(
-        navController = navController, buttonBack = false, currentRoute = Screens.HOME
+        navController = navController,
+        buttonBack = false,
+        currentRoute = Screens.HOME,
+        title = stringResource(id = R.string.title_home)
     ) {
         Column(
             modifier = Modifier
@@ -70,7 +73,7 @@ fun HomeScreen(
                     viewModel.onEvent(HomeViewEvent.UpdateFilter(it))
                     isPasswordVisible = it.lowercase()
                 },
-                modifier = Modifier.height(40.dp),
+                modifier = Modifier.height(50.dp),
                 hint = stringResource(id = R.string.search_pokemon)
             )
             Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
@@ -202,14 +205,15 @@ fun PokemonTypeItem(modifier: Modifier, pokemonType: String) {
             .clip(shape = RoundedCornerShape(30.dp))
             .border(
                 width = 1.dp,
-                color = Color.Gray,
+                color = MaterialTheme.colorScheme.onPrimary,
                 shape = RoundedCornerShape(30.dp)
             )
-            .background(Color(0xFF969EBD)),
+            //.background(Color(0xFF969EBD))
+            .background(MaterialTheme.colorScheme.onSecondary),
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = pokemonType,
+            text = pokemonType.capitalize(),
             color = MaterialTheme.colorScheme.onPrimary,
             style = MaterialTheme.typography.labelSmall,
             modifier = Modifier

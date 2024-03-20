@@ -4,6 +4,9 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 import mx.nancrow.pokedex.domain.model.network.response.Sprites
+import mx.nancrow.pokedex.presentation.screens.home.PokemonAbility
+import mx.nancrow.pokedex.presentation.screens.home.PokemonStat
+import mx.nancrow.pokedex.presentation.screens.home.PokemonType
 
 @Parcelize
 data class PokemonDataClass(
@@ -18,5 +21,11 @@ data class PokemonDataClass(
     @SerializedName("weight")
     var weight: Int = 0,
     @SerializedName("description")
-    var description: String = ""
-): Parcelable
+    var description: String = "",
+    @SerializedName("types")
+    var types: List<PokemonType> = listOf(),
+    @SerializedName("abilities")
+    var abilities: List<PokemonAbility> = listOf(),
+    @SerializedName("stats")
+    var stats: List<PokemonStat> = listOf(),
+) : Parcelable

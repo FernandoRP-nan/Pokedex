@@ -12,7 +12,6 @@ import mx.nancrow.pokedex.util.Resource
 
 class PokemonRepositoryImpl(
     private val api: PokemonApiService,
-    private val preferences: Preferences
 ) : PokemonRepository {
     override suspend fun getPokemon(pokemonId: Int): Resource<PokemonResponse> {
         return try {

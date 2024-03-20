@@ -10,6 +10,6 @@ data class Act1ViewState(
     val emailError: Int? = null,
     val result: String = "",
     val showDialogError: Boolean = false,
+    val exist: Boolean = false,
     val pokemon: PokemonResponse? = null
-
 ) : ViewState()

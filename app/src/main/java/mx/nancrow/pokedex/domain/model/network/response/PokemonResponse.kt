@@ -3,6 +3,8 @@ package mx.nancrow.pokedex.domain.model.network.response
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
+import mx.nancrow.pokedex.presentation.screens.home.PokemonAbility
+import mx.nancrow.pokedex.presentation.screens.home.PokemonStat
 import mx.nancrow.pokedex.presentation.screens.home.PokemonType
 
 @Parcelize
@@ -27,4 +29,8 @@ data class PokemonResponse(
     var description: String = "",
     @SerializedName("types")
     var types: List<PokemonType> = listOf(),
+    @SerializedName("abilities")
+    var abilities: List<PokemonAbility> = listOf(),
+    @SerializedName("stats")
+    var stats: List<PokemonStat> = listOf(),
 ) : Parcelable

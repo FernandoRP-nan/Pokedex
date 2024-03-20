@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import mx.nancrow.pokedex.presentation.composables.BottomNavigation
@@ -25,7 +26,7 @@ fun Screen(
     containerColor: Color = MaterialTheme.colorScheme.primary,
     colorStatusBar: Color = MaterialTheme.colorScheme.primary,
     darkIconsStatusBar: Boolean = false,
-    paddingTop: Boolean = true,
+    paddingTop: Boolean = false,
     currentRoute: String,
     iconColors: Color = MaterialTheme.colorScheme.background,
     content: @Composable BoxScope. () -> Unit
@@ -59,8 +60,9 @@ fun Screen(
                 .padding(
                     if (paddingTop) {
                         it
+
                     } else {
-                        PaddingValues()
+                        PaddingValues(top = 25.dp, bottom = it.calculateBottomPadding())
                     }
                 )
                 .fillMaxSize()

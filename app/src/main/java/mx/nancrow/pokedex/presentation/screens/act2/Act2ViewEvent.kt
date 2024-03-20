@@ -1,4 +1,4 @@
-package mx.pokedex.presentation.screens.act2
+package mx.nancrow.pokedex.presentation.screens.act2
 
 sealed interface Act2ViewEvent{
     data class OnInput1Change(val newText: String): Act2ViewEvent

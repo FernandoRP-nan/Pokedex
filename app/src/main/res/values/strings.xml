@@ -24,7 +24,10 @@
     <string name="prome_is">"Tu promedio es: "</string>
     <string name="result_prom_is">"Tú estás: "</string>
     <string name="save">"Guardar pokémon"</string>
+    <string name="delete">"Borrar pokémon"</string>
     <string name="search_pokemon">Buscar pokemon</string>
+    <string name="title_favorites">Favoritos</string>
+    <string name="title_home">Pokédex</string>
 
 
 </resources>
