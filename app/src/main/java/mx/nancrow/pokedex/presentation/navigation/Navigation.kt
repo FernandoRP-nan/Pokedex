@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import mx.nancrow.pokedex.presentation.screens.act1.Act1Screen
 import mx.nancrow.pokedex.presentation.screens.act2.Act2Screen
+import mx.nancrow.pokedex.presentation.screens.act3.Act3Screen
 import mx.nancrow.pokedex.presentation.screens.home.HomeScreen
 
 @Composable
@@ -27,6 +28,9 @@ fun Navigation(navController: NavController) {
         }
         composable(Screens.ACT_2) {
             Act2Screen(navController)
+        }
+        composable(Screens.ACT_3) {
+            Act3Screen(navController)
         }
     }
 }

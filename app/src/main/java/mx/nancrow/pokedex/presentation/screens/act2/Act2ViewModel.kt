@@ -11,6 +11,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import mx.nancrow.pokedex.presentation.viewmodel.BaseViewModel
 import mx.nancrow.pokedex.domain.use_case.LocalGetAllPokemonUseCase
+import mx.nancrow.pokedex.presentation.screens.act3.Act3ViewEvent
+import mx.nancrow.pokedex.presentation.screens.act3.Act3ViewState
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,7 +25,7 @@ class Act2ViewModel @Inject constructor(
         private set
 
     init {
-        initViewState(Act2ViewState())
+        initViewState(Act3ViewState())
         getFavoritePokemon()
     }
 

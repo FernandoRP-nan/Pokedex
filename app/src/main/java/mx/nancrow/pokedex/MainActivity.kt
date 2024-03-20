@@ -9,8 +9,10 @@ import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import mx.nancrow.pokedex.domain.preferences.Preferences
 import mx.nancrow.pokedex.presentation.navigation.Navigation
-import mx.nancrow.pokedex.presentation.theme.PmaTheme
+import mx.nancrow.pokedex.presentation.theme.PokedexTheme
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -19,10 +21,13 @@ class MainActivity : ComponentActivity() {
         val networkAvailable = _networkAvailable.asStateFlow()
     }
 
+    @Inject
+    lateinit var preferences: Preferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            PmaTheme {
+            PokedexTheme (darkTheme = preferences.loadDarkTheme()) {
                 Navigation(navController = rememberNavController())
                 val checkNetworkAvailable by networkAvailable
                     .collectAsStateWithLifecycle()

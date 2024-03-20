@@ -33,7 +33,7 @@ private val items = listOf(
     ),
     NavigationItem(
         title = "Perfil",
-        icon = R.drawable.person,
+        icon = R.drawable.settings,
         route = Screens.ACT_3
     )
 )

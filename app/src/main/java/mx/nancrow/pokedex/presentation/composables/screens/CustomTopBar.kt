@@ -5,9 +5,11 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -33,32 +35,16 @@ fun CustomTopBar(
     buttonBack: Boolean = true,
     title: String? = null,
     @DrawableRes profileIcon: Int? = null,
-    iconColors: Color = MaterialTheme.colorScheme.background
+    iconColors: Color = MaterialTheme.colorScheme.onPrimary
 ) {
     val spacing = LocalSpacing.current
     Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-        Box(
-            modifier = Modifier
-                .padding(start = 20.dp)
-                .weight(1f)
-        ) {
-            if (buttonBack) {
-                IconButton(modifier = Modifier,
-                    onClick = { navController.popBackStack() }) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.arrow_left),
-                        contentDescription = null,
-                        tint = iconColors,
-                        modifier = Modifier.size(24.dp)
-                    )
-                }
-            }
-        }
         Row(
             modifier = Modifier.weight(5f),
-            horizontalArrangement = Arrangement.spacedBy(spacing.spaceSmall),
+            horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
             verticalAlignment = Alignment.CenterVertically
         ) {
+            Spacer(modifier = Modifier.width(spacing.spaceLarge))
             if (title != null) {
                 ImageNormal(
                     modifier = Modifier.size(35.dp), imageName = R.drawable.poke_ball_icon
@@ -72,19 +58,6 @@ fun CustomTopBar(
             } else {
                 ImageNormal(
                     modifier = Modifier.size(50.dp), imageName = R.drawable.poke_ball_icon
-                )
-            }
-        }
-        Box(
-            modifier = Modifier
-                .padding(start = 30.dp)
-                .weight(1f)
-        ) {
-            if (profileIcon != null) {
-                Image(
-                    modifier = Modifier.clip(RoundedCornerShape(50.dp)),
-                    painter = painterResource(id = profileIcon),
-                    contentDescription = null,
                 )
             }
         }

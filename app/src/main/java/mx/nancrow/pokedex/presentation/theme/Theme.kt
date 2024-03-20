@@ -2,7 +2,6 @@ package mx.nancrow.pokedex.presentation.theme
 
 import android.app.Activity
 import android.os.Build
-import android.text.method.BaseKeyListener
 import android.view.Window
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -19,6 +18,7 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import mx.nancrow.pokedex.domain.preferences.Preferences
 
 private val DarkColorScheme = darkColorScheme(
     primary = Primary,
@@ -60,14 +60,15 @@ private val LightColorScheme = lightColorScheme(
     onSurface = Color(0xFF1C1B1F),
     */
 )
-
 @Composable
-fun PmaTheme(
+fun PokedexTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
+
+
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
@@ -87,7 +88,7 @@ fun PmaTheme(
     }
 
     MaterialTheme(
-        colorScheme = LightColorScheme,
+        colorScheme = colorScheme,
         typography = Typography,
         content = content
     )

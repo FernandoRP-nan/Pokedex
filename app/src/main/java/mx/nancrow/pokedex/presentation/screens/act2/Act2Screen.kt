@@ -22,6 +22,7 @@ import mx.nancrow.pokedex.domain.model.network.response.PokemonResponse
 import mx.nancrow.pokedex.domain.model.network.response.Sprites
 import mx.nancrow.pokedex.presentation.navigation.Screens
 import mx.nancrow.pokedex.presentation.composables.screens.Screen
+import mx.nancrow.pokedex.presentation.screens.act3.Act3ViewModel
 import mx.nancrow.pokedex.presentation.screens.home.PokemonItem
 import mx.pokedex.presentation.theme.LocalSpacing
 

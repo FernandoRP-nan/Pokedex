@@ -28,7 +28,7 @@ fun Screen(
     darkIconsStatusBar: Boolean = false,
     paddingTop: Boolean = false,
     currentRoute: String,
-    iconColors: Color = MaterialTheme.colorScheme.background,
+    iconColors: Color = MaterialTheme.colorScheme.onPrimary,
     content: @Composable BoxScope. () -> Unit
 ) {
     val systemUiController = rememberSystemUiController()

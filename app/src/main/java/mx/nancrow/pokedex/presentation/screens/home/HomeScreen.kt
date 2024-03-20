@@ -160,7 +160,7 @@ fun PokemonItem(modifier: Modifier, pokemon: PokemonResponse, onClick: () -> Uni
         }
         Text(
             text = "${pokemon.id} ${pokemon.name.capitalize()}",
-            color = MaterialTheme.colorScheme.onSecondary,
+            color = MaterialTheme.colorScheme.onBackground,
             style = MaterialTheme.typography.bodySmall,
             modifier = Modifier
                 .offset(y = (5).dp)
@@ -183,7 +183,7 @@ fun PokemonFilterItem(modifier: Modifier, pokemon: PokemonSearchResponse, onClic
     ) {
         Text(
             text = "${pokemon.id} ${pokemon.name.capitalize()}",
-            color = MaterialTheme.colorScheme.onSecondary,
+            color = MaterialTheme.colorScheme.onBackground,
             style = MaterialTheme.typography.labelMedium,
             modifier = Modifier
                 .offset(y = (5).dp)

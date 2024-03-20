@@ -6,39 +6,14 @@ import mx.nancrow.pokedex.domain.preferences.Preferences
 class DefaultPreferences(
     private val sharedPref: SharedPreferences
 ): Preferences {
-    override fun saveShouldShowOnBoarding(shouldShow: Boolean) {
+    override fun isDarkTheme(darkTheme: Boolean) {
         sharedPref.edit()
-            .putBoolean(Preferences.KEY_ONBOARDING, shouldShow)
+            .putBoolean(Preferences.IS_DARK_THEME, darkTheme)
             .apply()
     }
 
-    override fun loadShouldShowOnBoarding(): Boolean {
+    override fun loadDarkTheme(): Boolean {
         return sharedPref
-            .getBoolean(Preferences.KEY_ONBOARDING, true)
+            .getBoolean(Preferences.IS_DARK_THEME, false)
     }
-
-
-    override fun saveIsLogged(isLogged: Boolean) {
-        sharedPref.edit()
-            .putBoolean(Preferences.KEY_IS_LOGGED, isLogged)
-            .apply()
-    }
-
-    override fun loadIsLogged(): Boolean {
-        return sharedPref
-            .getBoolean(Preferences.KEY_IS_LOGGED, false)
-    }
-
-    override fun saveSessionToken(token: String) {
-        sharedPref.edit()
-            .putString(Preferences.KEY_SESSION_TOKEN, token)
-            .apply()
-    }
-
-    override fun loadSessionToken(): String {
-        return sharedPref
-            .getString(Preferences.KEY_SESSION_TOKEN, "") ?: ""
-    }
-
-
 }

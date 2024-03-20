@@ -28,6 +28,7 @@
     <string name="search_pokemon">Buscar pokemon</string>
     <string name="title_favorites">Favoritos</string>
     <string name="title_home">Pokédex</string>
-
+    <string name="title_config">Ajustes</string>
+    <string name="change_mode">Cambiar tema</string>
 
 </resources>

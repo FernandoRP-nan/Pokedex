@@ -34,7 +34,6 @@ object NetworkModule {
             .addInterceptor { chain ->
                 val original = chain.request()
                 val requestBuilder = original.newBuilder()
-                    .addHeader("Authorization", "Bearer ${preferences.loadSessionToken()}")
                     .addHeader("Accept", "application/json")
                     .addHeader("Content-Type", "application/json")
                 val request = requestBuilder.build()

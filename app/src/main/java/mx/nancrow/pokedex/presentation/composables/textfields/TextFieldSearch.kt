@@ -57,7 +57,7 @@ fun TextFieldSearch(
             interactionSource = interactionSource,
             enabled = true,
             singleLine = true,
-            textStyle = MaterialTheme.typography.labelMedium.copy(color = MaterialTheme.colorScheme.onSecondary, fontWeight = FontWeight(400))
+            textStyle = MaterialTheme.typography.labelMedium.copy(color = MaterialTheme.colorScheme.onBackground, fontWeight = FontWeight(400))
         ) { innerTextField ->
             TextFieldDefaults.DecorationBox(
                 value = "",

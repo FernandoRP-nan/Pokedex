@@ -1,4 +1,4 @@
-package mx.pokedex.presentation.composables.screens
+package mx.nancrow.pokedex.presentation.composables.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.PaddingValues
